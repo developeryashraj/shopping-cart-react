@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Cat Tee Black T-Shirt",
+    "price": 10.9,
+    "isShippingFree": true,
+    "installments": 9,
+    "image": "100",
+    "imageExtension": "jpg",
+    "size": "xs"
+  },
+  {
+    "id": 2,
+    "name": "Cat Tee Black T-Shirt",
+    "price": 10.9,
+    "isShippingFree": true,
+    "installments": 9,
+    "image": "101",
+    "imageExtension": "jpg",
+    "size": "xs"
+  },
+  {
+    "id": 3,
+    "name": "Cat Tee Black T-Shirt",
+    "price": 10.9,
+    "isShippingFree": true,
+    "installments": 9,
+    "image": "876661122392077",
+    "imageExtension": "jpg",
+    "size": "xs"
+  }
+]
