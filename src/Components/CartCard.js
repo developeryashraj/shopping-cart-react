@@ -3,23 +3,33 @@ import { Button, Card } from "react-bootstrap";
 function CartCard(props) {
   const product = { ...props.product };
   const prductImagePath = `${process.env.PUBLIC_URL}/products/${product.image}_2.${product.imageExtension}`;
+  const { updateCart } = props;
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={prductImagePath} />
+      <Card.Img variant="left" src={prductImagePath} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>
           $ {product.price}
-          {product.installments > 0 && (
-            <span>
-              <br />
-              <span>
-                or {product.installments} X{" "}
-                {Math.round((product.price / product.installments) * 100) / 100}
-              </span>
-            </span>
-          )}
+          <br />
+          {product.size} | {product.description}
+          <br />
+          Quantity : {product.quantity}
         </Card.Text>
+        <Button
+          variant="outline-secondary"
+          onClick={() => updateCart({ id: product.id, type: "decrease" })}
+        >
+          {" "}
+          -{" "}
+        </Button>
+        <Button
+          variant="outline-secondary"
+          onClick={() => updateCart({ id: product.id, type: "increase" })}
+        >
+          {" "}
+          +{" "}
+        </Button>
       </Card.Body>
     </Card>
   );

@@ -1,14 +1,14 @@
 import products from "../database/products.json";
 import ProductCard from "../Components/ProductCard";
 import { CounterContext } from "../App";
-import { setCart } from "../utils/cart";
+import { setCartData } from "../utils/cart";
 import { useContext } from "react";
 
 function ProductListing() {
   const { updateCounter } = useContext(CounterContext);
 
   const addToCart = (productId = "") => {
-    setCart(productId);
+    setCartData(productId);
     updateCounter();
   };
   return (

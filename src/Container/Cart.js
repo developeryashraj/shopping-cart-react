@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import CartCard from "../Components/CartCard";
-import { prepareCart } from "../utils/cart";
+import { prepareCart, updateCart as updateCardUtil } from "../utils/cart";
 import { Button, Badge } from "react-bootstrap";
 import { CounterContext } from "../App";
 
@@ -20,6 +20,12 @@ function Cart(props) {
     setCartDisplay(!cartDisplay);
   };
 
+  const updateCart = useCallback((action) => {
+    const { cartProducts, otherData } = updateCardUtil(action);
+    setProducData(cartProducts);
+    setCartData(otherData);
+  });
+
   // return "asdad";
   return (
     <div>
@@ -30,7 +36,13 @@ function Cart(props) {
       {cartDisplay &&
         productData &&
         productData.map((product) => {
-          return <CartCard product={product} key={product.id}></CartCard>;
+          return (
+            <CartCard
+              product={product}
+              key={product.id}
+              updateCart={updateCart}
+            ></CartCard>
+          );
         })}
     </div>
   );

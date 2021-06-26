@@ -1,7 +1,7 @@
 import products from "../database/products.json";
 
-export function setCart(productId) {
-  let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+export function setCartData(productId) {
+  let cartData = getCart();
   if (productId) {
     const getIndex = cartData.findIndex((item) => item.id === productId);
     if (getIndex > -1) {
@@ -12,13 +12,17 @@ export function setCart(productId) {
     } else {
       cartData.push({ id: productId, quantity: 1 });
     }
-    localStorage.setItem("cart", JSON.stringify(cartData));
+    setCart(cartData);
   }
   return cartData;
 }
 
-export function getCart() {
+function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function setCart(cartData) {
+  cartData && localStorage.setItem("cart", JSON.stringify(cartData));
 }
 
 export function prepareCart() {
@@ -46,4 +50,41 @@ export function prepareCart() {
     }
   });
   return { cartProducts, otherData };
+}
+
+export function updateCart(action) {
+  if (action.id) {
+    let cartData = getCart();
+    const itemIndex = cartData.findIndex((item) => item.id == action.id);
+    if (itemIndex > -1) {
+      switch (action.type) {
+        case "increase":
+          cartData[itemIndex] = {
+            id: cartData[itemIndex].id,
+            quantity: cartData[itemIndex].quantity + 1,
+          };
+          break;
+        case "decrease":
+          cartData[itemIndex] = {
+            id: cartData[itemIndex].id,
+            quantity: cartData[itemIndex].quantity - 1,
+          };
+          break;
+        case "remove":
+          cartData[itemIndex] = {
+            id: cartData[itemIndex].id,
+            quantity: 0,
+          };
+          break;
+
+        default:
+          break;
+      }
+      if (cartData[itemIndex].quantity === 0) {
+        cartData.splice(itemIndex, 1);
+      }
+    }
+    setCart(cartData);
+    return prepareCart();
+  }
 }
