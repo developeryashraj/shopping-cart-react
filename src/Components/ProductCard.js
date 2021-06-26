@@ -5,7 +5,7 @@ function ProductCard(props) {
   const prductImagePath = `${process.env.PUBLIC_URL}/products/${product.image}_1.${product.imageExtension}`;
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card>
       <Card.Img variant="top" src={prductImagePath} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>

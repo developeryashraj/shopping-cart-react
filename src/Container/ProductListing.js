@@ -3,6 +3,7 @@ import ProductCard from "../Components/ProductCard";
 import { CounterContext } from "../App";
 import { setCartData } from "../utils/cart";
 import { useContext } from "react";
+import { CardDeck } from "react-bootstrap";
 
 function ProductListing() {
   const { updateCounter } = useContext(CounterContext);
@@ -12,7 +13,7 @@ function ProductListing() {
     updateCounter();
   };
   return (
-    <div>
+    <CardDeck>
       {products.map((product, index) => {
         return (
           <ProductCard
@@ -22,7 +23,7 @@ function ProductListing() {
           ></ProductCard>
         );
       })}
-    </div>
+    </CardDeck>
   );
 }
 
