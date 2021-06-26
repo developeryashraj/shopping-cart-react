@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 function ProductCard(props) {
   const product = { ...props.product };
   const prductImagePath = `${process.env.PUBLIC_URL}/products/${product.image}_1.${product.imageExtension}`;
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={prductImagePath} />

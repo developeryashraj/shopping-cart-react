@@ -5,7 +5,7 @@ import { Button, Badge } from "react-bootstrap";
 import { CounterContext } from "../App";
 
 function Cart(props) {
-  const count = useContext(CounterContext);
+  const { count } = useContext(CounterContext);
   const [productData, setProducData] = useState([]);
   const [cartData, setCartData] = useState({});
   const [cartDisplay, setCartDisplay] = useState(false);
