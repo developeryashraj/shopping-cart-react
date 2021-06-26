@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartCard from "../Components/CartCard";
 import { prepareCart } from "../utils/cart";
 import { Button, Badge } from "react-bootstrap";
+import { CounterContext } from "../App";
 
 function Cart(props) {
+  const count = useContext(CounterContext);
   const [productData, setProducData] = useState([]);
+  const [cartData, setCartData] = useState({});
   const [cartDisplay, setCartDisplay] = useState(false);
+
   useEffect(() => {
-    setProducData(prepareCart());
-  }, []);
+    const { cartProducts, otherData } = prepareCart();
+    setProducData(cartProducts);
+    setCartData(otherData);
+  }, [count]);
 
   const handleDisplay = () => {
     setCartDisplay(!cartDisplay);
@@ -17,11 +23,8 @@ function Cart(props) {
   // return "asdad";
   return (
     <div>
-      <Button variant="primary">
-        View Cart{" "}
-        <Badge variant="light" onClick={() => handleDisplay()}>
-          {productData.length}
-        </Badge>
+      <Button variant="primary" onClick={() => handleDisplay()}>
+        View Cart <Badge variant="light">{cartData.totalQuantity || 0}</Badge>
         <span className="sr-only">unread messages</span>
       </Button>
       {cartDisplay &&

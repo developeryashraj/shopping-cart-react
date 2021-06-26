@@ -1,17 +1,18 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import ProductListing from "./ProductListing";
 import SideBar from "./SideBar";
-import Cart from "./Cart";
 import { setCart, getCart } from "../utils/cart";
+import { CounterContext } from "../App";
 
-function HomePage() {
+function HomePage(props) {
+  const setCount = useContext(CounterContext);
   const addToCart = (productId = "") => {
     setCart(productId);
+    props.updateCounter();
   };
 
   return (
     <Fragment>
-      <Cart></Cart>
       <SideBar></SideBar>
       <ProductListing addToCart={addToCart}></ProductListing>
     </Fragment>

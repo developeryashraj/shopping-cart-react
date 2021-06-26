@@ -7,10 +7,10 @@ export function setCart(productId) {
     if (getIndex > -1) {
       cartData[getIndex] = {
         id: productId,
-        counter: cartData[getIndex].counter + 1,
+        quantity: cartData[getIndex].quantity + 1,
       };
     } else {
-      cartData.push({ id: productId, counter: 1 });
+      cartData.push({ id: productId, quantity: 1 });
     }
     localStorage.setItem("cart", JSON.stringify(cartData));
   }
@@ -24,14 +24,26 @@ export function getCart() {
 export function prepareCart() {
   let cartData = getCart();
   let cartProducts = [];
+  const otherData = {
+    totalQuantity: 0,
+    subTotal: 0,
+    maxInstallment: 0,
+  };
   cartData.map((item) => {
     const findProduct = products.find((product) => product.id === item.id);
     if (findProduct) {
       cartProducts.push({
         ...findProduct,
-        counter: item.counter,
+        quantity: item.quantity,
       });
+
+      otherData.totalQuantity = otherData.totalQuantity + item.quantity;
+      otherData.subTotal = otherData.subTotal + findProduct.price;
+      otherData.maxInstallment =
+        findProduct.installments > otherData.maxInstallment
+          ? findProduct.installments
+          : otherData.maxInstallment;
     }
   });
-  return cartProducts;
+  return { cartProducts, otherData };
 }
