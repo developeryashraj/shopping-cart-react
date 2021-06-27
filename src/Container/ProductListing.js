@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { CardColumns } from "react-bootstrap";
 
 function ProductListing(props) {
-  const { updateCounter } = useContext(CounterContext);
+  const { updateCounter } = useContext(CounterContext) || {};
 
   const addToCart = (productId = "") => {
     setCartData(productId);
