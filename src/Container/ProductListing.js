@@ -1,20 +1,19 @@
-import products from "../database/products.json";
 import ProductCard from "../Components/ProductCard";
 import { CounterContext } from "../App";
 import { setCartData } from "../utils/cart";
 import { useContext } from "react";
 import { CardDeck } from "react-bootstrap";
 
-function ProductListing() {
+function ProductListing(props) {
   const { updateCounter } = useContext(CounterContext);
 
   const addToCart = (productId = "") => {
     setCartData(productId);
     updateCounter();
   };
-  return (
+  return props.products && props.products.length > 0 ? (
     <CardDeck>
-      {products.map((product, index) => {
+      {props.products.map((product, index) => {
         return (
           <ProductCard
             addToCart={addToCart}
@@ -24,6 +23,8 @@ function ProductListing() {
         );
       })}
     </CardDeck>
+  ) : (
+    "No Product Found"
   );
 }
 
