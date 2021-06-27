@@ -50,7 +50,6 @@ describe("<ProductListing />", () => {
         sortProducts={() => {}}
       />
     );
-    console.log(wrapper.debug());
 
     expect(
       wrapper.find("ProductCard").first().prop("addToCart")
