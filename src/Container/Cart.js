@@ -37,7 +37,7 @@ function Cart(props) {
         placement={placement}
         overlay={
           <Popover id={`popover-positioned-${placement}`}>
-            <Popover.Title as="h3">{`Popover ${placement}`}</Popover.Title>
+            <Popover.Title as="h3">In your cart</Popover.Title>
             <Popover.Content>
               <div className="col-md-12">
                 {productData &&

@@ -58,6 +58,21 @@ body {
   cursor: pointer;
 }
 
+.cart-items span {
+  display: block;
+  font-size: 14px;
+}
+.cart-items .dark-text {
+  font-weight: 500;
+}
+.cart-items {
+  margin-bottom: 10px;
+}
+
+.popover {
+  background: #eee !important;
+  max-width: 400px !important;
+}
 /*.float-cart .card img {
   height: 100px;
   width: auto;

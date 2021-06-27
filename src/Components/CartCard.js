@@ -1,36 +1,54 @@
-import { Button, Card, Container, Row, Col, Image } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  Image,
+  ButtonToolbar,
+  ButtonGroup,
+} from "react-bootstrap";
 
 function CartCard(props) {
   const product = { ...props.product };
   const prductImagePath = `${process.env.PUBLIC_URL}/products/${product.image}_2.${product.imageExtension}`;
   const { updateCart } = props;
   return (
-    <Row>
-      <Col xs={6} md={4}>
-        <Image src={prductImagePath} rounded />
+    <Row className="cart-items">
+      <Col xs={12} md={3}>
+        <Image src={prductImagePath} className="rounded img-fluid" />
       </Col>
-      <Col xs={6} md={4}>
-        {product.name}$ {product.price}
-        <br />
-        {product.size} | {product.description}
-        <br />
-        Quantity : {product.quantity}
+      <Col xs={12} md={6}>
+        <span className="dark-text">{product.name}</span>
+        <span>
+          {product.size} | {product.description}
+        </span>
+        <span>Quantity : {product.quantity}</span>
       </Col>
-      <Col xs={6} md={4}>
-        <Button
-          variant="outline-secondary"
-          onClick={() => updateCart({ id: product.id, type: "decrease" })}
-        >
-          {" "}
-          -{" "}
-        </Button>
-        <Button
-          variant="outline-secondary"
-          onClick={() => updateCart({ id: product.id, type: "increase" })}
-        >
-          {" "}
-          +{" "}
-        </Button>
+      <Col xs={12} md={3}>
+        $ {product.price}
+        <ButtonToolbar aria-label="Toolbar with button groups">
+          <ButtonGroup
+            className="mr-2 mt-3"
+            aria-label="Second group"
+            size="sm"
+          >
+            <Button
+              variant="outline-secondary"
+              onClick={() => updateCart({ id: product.id, type: "decrease" })}
+            >
+              {" "}
+              -{" "}
+            </Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => updateCart({ id: product.id, type: "increase" })}
+            >
+              {" "}
+              +{" "}
+            </Button>
+          </ButtonGroup>
+        </ButtonToolbar>
       </Col>
     </Row>
   );
