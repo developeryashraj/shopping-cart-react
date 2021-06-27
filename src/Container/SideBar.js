@@ -1,4 +1,5 @@
-import { Button } from "react-bootstrap";
+import { Fragment } from "react";
+import { Button, Badge } from "react-bootstrap";
 
 function SideBar(props) {
   const {
@@ -6,20 +7,27 @@ function SideBar(props) {
     filters: { sizes: sizeFilter },
   } = props;
   return (
-    <div>
-      {sizeFilter &&
-        sizeFilter.map((size, index) => {
-          return (
-            <Button
-              variant="outline-secondary"
-              onClick={() => filterProducts({ key: "size", value: size })}
-              key={index}
-            >
-              {size}
-            </Button>
-          );
-        })}
-    </div>
+    <Fragment>
+      <div className="">
+        <p>
+          <strong>Sizes:</strong>
+        </p>
+        <div>
+          {sizeFilter &&
+            sizeFilter.map((size, index) => {
+              return (
+                <a
+                  className="filter-link"
+                  onClick={() => filterProducts({ key: "size", value: size })}
+                  key={index}
+                >
+                  <Badge variant="secondary">{size}</Badge>
+                </a>
+              );
+            })}
+        </div>
+      </div>
+    </Fragment>
   );
 }
 

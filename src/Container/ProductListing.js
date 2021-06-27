@@ -14,13 +14,14 @@ function ProductListing(props) {
 
   const renderProducts = () => {
     return props.products && props.products.length > 0 ? (
-      <CardDeck>
+      <CardDeck className="col-md-12 row">
         {props.products.map((product, index) => {
           return (
             <ProductCard
               addToCart={addToCart}
               product={product}
               key={product.id}
+              className="col-md-3"
             ></ProductCard>
           );
         })}
@@ -56,9 +57,11 @@ function ProductListing(props) {
 
   return (
     <div>
-      {renderSorting()}
-      <br />
-      {renderProducts()}
+      <div className="row col-md-12 sort-panel">
+        <div className="col-md-6">Counter here.</div>
+        <div className="col-md-6 text-right">{renderSorting()}</div>
+      </div>
+      <div className="row col-md-12">{renderProducts()}</div>
     </div>
   );
 }

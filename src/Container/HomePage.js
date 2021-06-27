@@ -66,17 +66,21 @@ class HomePage extends React.PureComponent {
   render() {
     const { products } = this.state;
     return (
-      <Fragment>
-        <SideBar
-          filterProducts={this.filterProducts}
-          filters={filters}
-        ></SideBar>
-        <ProductListing
-          products={products}
-          filters={filters}
-          sortProducts={this.sortProducts}
-        ></ProductListing>
-      </Fragment>
+      <div className="row col-md-12">
+        <div className="col-md-3 row">
+          <SideBar
+            filterProducts={this.filterProducts}
+            filters={filters}
+          ></SideBar>
+        </div>
+        <div className="col-md-9">
+          <ProductListing
+            products={products}
+            filters={filters}
+            sortProducts={this.sortProducts}
+          ></ProductListing>
+        </div>
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import CartCard from "../Components/CartCard";
 import { prepareCart, updateCart as updateCardUtil } from "../utils/cart";
-import { Button, Badge } from "react-bootstrap";
+import { Button, Badge, OverlayTrigger, Popover } from "react-bootstrap";
 import { CounterContext } from "../App";
 
 function Cart(props) {
@@ -27,23 +27,43 @@ function Cart(props) {
   });
 
   // return "asdad";
+  const className = cartDisplay ? "open" : "close";
+  const placement = "left";
   return (
     <div>
-      <Button variant="primary" onClick={() => handleDisplay()}>
-        View Cart <Badge variant="light">{cartData.totalQuantity || 0}</Badge>
-        <span className="sr-only">unread messages</span>
-      </Button>
-      {cartDisplay &&
-        productData &&
-        productData.map((product) => {
-          return (
-            <CartCard
-              product={product}
-              key={product.id}
-              updateCart={updateCart}
-            ></CartCard>
-          );
-        })}
+      <OverlayTrigger
+        trigger="click"
+        key={placement}
+        placement={placement}
+        overlay={
+          <Popover id={`popover-positioned-${placement}`}>
+            <Popover.Title as="h3">{`Popover ${placement}`}</Popover.Title>
+            <Popover.Content>
+              <div className="col-md-12">
+                {productData &&
+                  productData.map((product) => {
+                    return (
+                      <CartCard
+                        product={product}
+                        key={product.id}
+                        updateCart={updateCart}
+                      ></CartCard>
+                    );
+                  })}
+              </div>
+            </Popover.Content>
+          </Popover>
+        }
+      >
+        <Button
+          className="btn-drawer btn"
+          variant="dark"
+          onClick={() => handleDisplay()}
+        >
+          <img src={`${process.env.PUBLIC_URL}/assets/bag-icon.png`} />
+          <Badge variant="light">{cartData.totalQuantity || 0}</Badge>
+        </Button>
+      </OverlayTrigger>
     </div>
   );
 }

@@ -7,7 +7,7 @@ function ProductCard(props) {
   return (
     <Card>
       <Card.Img variant="top" src={prductImagePath} />
-      <Card.Body>
+      <Card.Body className="text-center">
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>
           $ {product.price}
@@ -21,8 +21,8 @@ function ProductCard(props) {
             </span>
           )}
         </Card.Text>
-        <Button variant="primary" onClick={() => props.addToCart(product.id)}>
-          Add to cart
+        <Button variant="dark" onClick={() => props.addToCart(product.id)}>
+          Add to C art
         </Button>
       </Card.Body>
     </Card>

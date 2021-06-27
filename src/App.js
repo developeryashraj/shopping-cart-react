@@ -1,3 +1,4 @@
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./Container/HomePage";
 import Cart from "./Container/Cart";
@@ -11,7 +12,7 @@ function App() {
   const contextValue = { count, updateCounter };
 
   return (
-    <div className="App">
+    <div className="App container">
       <CounterContext.Provider value={contextValue}>
         <Cart></Cart>
         <HomePage></HomePage>
