@@ -2,7 +2,7 @@ import ProductCard from "../Components/ProductCard";
 import { CounterContext } from "../App";
 import { setCartData } from "../utils/cart";
 import { useContext } from "react";
-import { CardDeck } from "react-bootstrap";
+import { CardColumns } from "react-bootstrap";
 
 function ProductListing(props) {
   const { updateCounter } = useContext(CounterContext);
@@ -14,7 +14,7 @@ function ProductListing(props) {
 
   const renderProducts = () => {
     return props.products && props.products.length > 0 ? (
-      <CardDeck className="col-md-12 row">
+      <CardColumns className="col-md-12">
         {props.products.map((product, index) => {
           return (
             <ProductCard
@@ -25,9 +25,9 @@ function ProductListing(props) {
             ></ProductCard>
           );
         })}
-      </CardDeck>
+      </CardColumns>
     ) : (
-      "No Product Found"
+      ""
     );
   };
 
@@ -58,7 +58,11 @@ function ProductListing(props) {
   return (
     <div>
       <div className="row col-md-12 sort-panel">
-        <div className="col-md-6">Counter here.</div>
+        <div className="col-md-6">
+          {props.products && props.products.length > 0
+            ? `${props.products.length} product(s) found.`
+            : "No products found."}
+        </div>
         <div className="col-md-6 text-right">{renderSorting()}</div>
       </div>
       <div className="row col-md-12">{renderProducts()}</div>

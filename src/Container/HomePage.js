@@ -11,8 +11,7 @@ class HomePage extends React.PureComponent {
     this.state = {
       products: products,
       filter: {
-        key: "",
-        value: "",
+        size: [],
       },
       sort: {
         key: "",
@@ -22,7 +21,10 @@ class HomePage extends React.PureComponent {
   }
 
   prepareProducts = () => {
-    const { filter, sort } = this.state;
+    const {
+      filter: { size: sizeFilter },
+      sort,
+    } = this.state;
     let prepareData = [...products];
     if (sort.key) {
       sort.value &&
@@ -32,24 +34,37 @@ class HomePage extends React.PureComponent {
             : b[sort.key] - a[sort.key]
         );
     }
-    if (filter.key && filter.value) {
-      prepareData = prepareData.filter(
-        (product) => product[filter.key] === filter.value.toLowerCase()
+    if (sizeFilter.length > 0) {
+      prepareData = prepareData.filter((product) =>
+        sizeFilter.includes(product["size"].toLowerCase())
       );
     }
     this.setState({ products: prepareData });
   };
+
   filterProducts = (criteria = "") => {
-    const filterObj = {
-      key: criteria.key || "",
-      value: criteria.value || "",
-    };
-    this.setState(
-      {
-        filter: filterObj,
-      },
-      this.prepareProducts
-    );
+    const { key, value } = criteria;
+    if (key && value) {
+      const { filter } = this.state;
+      const filterObj = filter[key];
+      const itemIndex = filterObj.findIndex(
+        (item) => item === value.toLowerCase()
+      );
+      if (itemIndex > -1) {
+        filterObj.splice(itemIndex, 1);
+      } else {
+        filterObj.push(value.toLowerCase());
+      }
+
+      const finalObj = { ...filter };
+      finalObj[key] = filterObj;
+      this.setState(
+        {
+          filter: finalObj,
+        },
+        this.prepareProducts
+      );
+    }
   };
   sortProducts = (criteria = "") => {
     const sortObj = {
@@ -64,13 +79,14 @@ class HomePage extends React.PureComponent {
     );
   };
   render() {
-    const { products } = this.state;
+    const { products, filter } = this.state;
     return (
       <div className="row col-md-12">
         <div className="col-md-3 row">
           <SideBar
             filterProducts={this.filterProducts}
             filters={filters}
+            currentFilter={filter}
           ></SideBar>
         </div>
         <div className="col-md-9">

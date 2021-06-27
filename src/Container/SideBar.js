@@ -5,6 +5,7 @@ function SideBar(props) {
   const {
     filterProducts,
     filters: { sizes: sizeFilter },
+    currentFilter: { size: appliedSizeFilter = [] },
   } = props;
   return (
     <Fragment>
@@ -22,7 +23,15 @@ function SideBar(props) {
                   onClick={() => filterProducts({ key: "size", value: size })}
                   key={index}
                 >
-                  <Badge variant="secondary">{size}</Badge>
+                  <Badge
+                    variant={
+                      appliedSizeFilter.includes(size.toLowerCase())
+                        ? "dark"
+                        : "light"
+                    }
+                  >
+                    {size}
+                  </Badge>
                 </a>
               );
             })}

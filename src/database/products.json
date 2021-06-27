@@ -18,7 +18,7 @@
     "installments": 9,
     "image": "101",
     "imageExtension": "jpg",
-    "size": "xs",
+    "size": "m",
     "description": "two"
   },
   {
@@ -29,7 +29,40 @@
     "installments": 9,
     "image": "876661122392077",
     "imageExtension": "jpg",
+    "size": "xxl",
+    "description": "three"
+  },
+  {
+    "id": 4,
+    "name": "Dark Thug Blue-Navy T-Shirt",
+    "price": 29.45,
+    "isShippingFree": true,
+    "installments": 5,
+    "image": "5619496040738316",
+    "imageExtension": "jpg",
     "size": "xs",
+    "description": "one"
+  },
+  {
+    "id": 5,
+    "name": "Sphynx Tie Dye Wine T-Shirt",
+    "price": 9,
+    "isShippingFree": true,
+    "installments": 3,
+    "image": "6090484789343891",
+    "imageExtension": "jpg",
+    "size": "m",
+    "description": "two"
+  },
+  {
+    "id": 6,
+    "name": "Skull",
+    "price": 14,
+    "isShippingFree": true,
+    "installments": 5,
+    "image": "8552515751438644",
+    "imageExtension": "jpg",
+    "size": "xxl",
     "description": "three"
   }
 ]
