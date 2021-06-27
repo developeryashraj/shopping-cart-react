@@ -1,7 +1,14 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import CartCard from "../Components/CartCard";
 import { prepareCart, updateCart as updateCardUtil } from "../utils/cart";
-import { Button, Badge, OverlayTrigger, Popover } from "react-bootstrap";
+import {
+  Button,
+  Badge,
+  OverlayTrigger,
+  Popover,
+  Row,
+  Col,
+} from "react-bootstrap";
 import { CounterContext } from "../App";
 
 function Cart(props) {
@@ -49,6 +56,22 @@ function Cart(props) {
                     );
                   })}
               </div>
+              <Row className="">
+                <Col xs={12} md={6} className="d-flex justify-content-start">
+                  <strong>SUBTOTAL</strong>
+                </Col>
+                <Col xs={12} md={6} className="d-flex justify-content-end">
+                  <strong>${cartData.subTotal}</strong>
+                  <br />
+                  or {cartData.maxInstallment} X $
+                  {Math.round(
+                    (cartData.subTotal / cartData.maxInstallment) * 100
+                  ) / 100}
+                </Col>
+              </Row>
+              <Row className="d-flex justify-content-center">
+                <Button variant="primary">Checkout</Button>
+              </Row>
             </Popover.Content>
           </Popover>
         }

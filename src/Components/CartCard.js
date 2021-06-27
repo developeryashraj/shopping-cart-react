@@ -28,7 +28,23 @@ function CartCard(props) {
         <span>Quantity : {product.quantity}</span>
       </Col>
       <Col xs={12} md={3}>
-        $ {product.price}
+        <div className="dark-text">
+          <span className="">${product.price}</span>
+          <ButtonGroup
+            className=""
+            aria-label="Second group"
+            size="sm"
+            as="span"
+          >
+            <Button
+              variant="outline-danger"
+              onClick={() => updateCart({ id: product.id, type: "remove" })}
+            >
+              {" "}
+              X{" "}
+            </Button>
+          </ButtonGroup>
+        </div>
         <ButtonToolbar aria-label="Toolbar with button groups">
           <ButtonGroup
             className="mr-2 mt-3"

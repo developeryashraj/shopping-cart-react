@@ -15,14 +15,14 @@ function ProductCard(props) {
             <span>
               <br />
               <span>
-                or {product.installments} X{" "}
+                or {product.installments} X $
                 {Math.round((product.price / product.installments) * 100) / 100}
               </span>
             </span>
           )}
         </Card.Text>
         <Button variant="dark" onClick={() => props.addToCart(product.id)}>
-          Add to C art
+          Add to Cart
         </Button>
       </Card.Body>
     </Card>
