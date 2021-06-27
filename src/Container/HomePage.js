@@ -10,29 +10,58 @@ class HomePage extends React.PureComponent {
 
     this.state = {
       products: products,
+      filter: {
+        key: "",
+        value: "",
+      },
+      sort: {
+        key: "",
+        value: "",
+      },
     };
   }
-  filterProducts = (criteria = "") => {
-    if (criteria.key && criteria.value) {
-      const { key, value } = criteria;
-      console.log(products);
-      const filteredProducts = products.filter(
-        (product) => product[key] === value.toLowerCase()
-      );
-      this.setState({ products: filteredProducts });
+
+  prepareProducts = () => {
+    const { filter, sort } = this.state;
+    let prepareData = [...products];
+    if (sort.key) {
+      sort.value &&
+        prepareData.sort((a, b) =>
+          sort.value == "asc"
+            ? a[sort.key] - b[sort.key]
+            : b[sort.key] - a[sort.key]
+        );
     }
+    if (filter.key && filter.value) {
+      prepareData = prepareData.filter(
+        (product) => product[filter.key] === filter.value.toLowerCase()
+      );
+    }
+    this.setState({ products: prepareData });
+  };
+  filterProducts = (criteria = "") => {
+    const filterObj = {
+      key: criteria.key || "",
+      value: criteria.value || "",
+    };
+    this.setState(
+      {
+        filter: filterObj,
+      },
+      this.prepareProducts
+    );
   };
   sortProducts = (criteria = "") => {
-    if (criteria.key) {
-      const { key, value = "" } = criteria;
-      const sortData = [...products];
-      console.log(sortData, "=====");
-      value &&
-        sortData.sort((a, b) =>
-          value == "asc" ? a[key] - b[key] : b[key] - a[key]
-        );
-      this.setState({ products: sortData });
-    }
+    const sortObj = {
+      key: criteria.key || "",
+      value: criteria.value || "",
+    };
+    this.setState(
+      {
+        sort: sortObj,
+      },
+      this.prepareProducts
+    );
   };
   render() {
     const { products } = this.state;
