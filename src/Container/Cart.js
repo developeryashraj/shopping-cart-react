@@ -76,7 +76,7 @@ function Cart(props) {
                   </Row>
 
                   <Row className="d-flex justify-content-center">
-                    <Button variant="primary">Checkout</Button>
+                    <Button variant="dark">Checkout</Button>
                   </Row>
                 </Fragment>
               ) : (
