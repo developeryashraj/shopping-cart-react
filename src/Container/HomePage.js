@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ProductListing from "./ProductListing";
 import SideBar from "./SideBar";
 import products from "../database/products.json";
@@ -27,7 +27,7 @@ class HomePage extends React.PureComponent {
     if (sort.key) {
       sort.value &&
         prepareData.sort((a, b) =>
-          sort.value == "asc"
+          sort.value === "asc"
             ? a[sort.key] - b[sort.key]
             : b[sort.key] - a[sort.key]
         );

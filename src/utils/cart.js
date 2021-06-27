@@ -55,7 +55,7 @@ export function prepareCart() {
 export function updateCart(action) {
   if (action.id) {
     let cartData = getCart();
-    const itemIndex = cartData.findIndex((item) => item.id == action.id);
+    const itemIndex = cartData.findIndex((item) => item.id === action.id);
     if (itemIndex > -1) {
       switch (action.type) {
         case "increase":

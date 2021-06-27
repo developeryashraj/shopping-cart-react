@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Button, Badge } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 
 function SideBar(props) {
   const {
@@ -17,6 +17,7 @@ function SideBar(props) {
             sizeFilter.map((size, index) => {
               return (
                 <a
+                  href="#"
                   className="filter-link"
                   onClick={() => filterProducts({ key: "size", value: size })}
                   key={index}

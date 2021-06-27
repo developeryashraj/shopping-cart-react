@@ -24,10 +24,8 @@ function Cart(props) {
     const { cartProducts, otherData } = updateCardUtil(action);
     setProducData(cartProducts);
     setCartData(otherData);
-  });
+  }, []);
 
-  // return "asdad";
-  const className = cartDisplay ? "open" : "close";
   const placement = "left";
   return (
     <div>
@@ -60,7 +58,10 @@ function Cart(props) {
           variant="dark"
           onClick={() => handleDisplay()}
         >
-          <img src={`${process.env.PUBLIC_URL}/assets/bag-icon.png`} />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/bag-icon.png`}
+            alt="cart"
+          />
           <Badge variant="light">{cartData.totalQuantity || 0}</Badge>
         </Button>
       </OverlayTrigger>

@@ -1,7 +1,5 @@
 import {
   Button,
-  Card,
-  Container,
   Row,
   Col,
   Image,
@@ -16,7 +14,11 @@ function CartCard(props) {
   return (
     <Row className="cart-items">
       <Col xs={12} md={3}>
-        <Image src={prductImagePath} className="rounded img-fluid" />
+        <Image
+          src={prductImagePath}
+          className="rounded img-fluid"
+          alt="product"
+        />
       </Col>
       <Col xs={12} md={6}>
         <span className="dark-text">{product.name}</span>

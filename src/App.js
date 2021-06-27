@@ -8,7 +8,7 @@ export const CounterContext = React.createContext();
 
 function App() {
   const [count, setCount] = useState(0);
-  const updateCounter = useCallback(() => setCount(count + 1));
+  const updateCounter = useCallback(() => setCount(count + 1), [count]);
   const contextValue = { count, updateCounter };
 
   return (
