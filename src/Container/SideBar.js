@@ -1,9 +1,10 @@
-import filters from "../database/filters.json";
 import { Button } from "react-bootstrap";
 
 function SideBar(props) {
-  const { sizes: sizeFilter } = filters;
-  const { filterProducts } = props;
+  const {
+    filterProducts,
+    filters: { sizes: sizeFilter },
+  } = props;
   return (
     <div>
       {sizeFilter &&

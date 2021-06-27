@@ -1,3 +1,8 @@
 {
-  "sizes": ["S", "M", "L", "XXL", "XS"]
+  "sizes": ["S", "M", "L", "XXL", "XS"],
+  "price": [
+    { "key": "", "label": "Select" },
+    { "key": "asc", "label": "Low to High" },
+    { "key": "desc", "label": "High to Low" }
+  ]
 }
