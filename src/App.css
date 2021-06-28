@@ -53,6 +53,11 @@ body {
   margin-bottom: 10px;
 }
 
+.btn.close-cart {
+  padding: 0.1rem 0.25rem !important;
+  font-size: 0.57rem !important;
+}
+
 .popover {
   background: #eee !important;
   max-width: 400px !important;

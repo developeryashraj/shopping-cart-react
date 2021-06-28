@@ -43,10 +43,10 @@ function Cart(props) {
         overlay={
           <Popover id={`popover-positioned-${placement}`}>
             <Popover.Title as="h3">In your cart</Popover.Title>
-            <Popover.Content>
+            <Popover.Content className="row">
               {productData.length > 0 ? (
                 <Fragment>
-                  <div className="col-md-12">
+                  <div className="col-md-12 mb-2 mt-2">
                     {productData.map((product) => {
                       return (
                         <CartCard
@@ -57,25 +57,27 @@ function Cart(props) {
                       );
                     })}
                   </div>
-                  <Row className="">
-                    <Col
-                      xs={12}
-                      md={6}
-                      className="d-flex justify-content-start"
-                    >
-                      <strong>SUBTOTAL</strong>
-                    </Col>
-                    <Col xs={12} md={6} className="d-flex justify-content-end">
-                      <strong>${cartData.subTotal}</strong>
-                      <br />
-                      or {cartData.maxInstallment} X $
-                      {Math.round(
-                        (cartData.subTotal / cartData.maxInstallment) * 100
-                      ) / 100}
-                    </Col>
-                  </Row>
+                  <div className="col-md-12 pt-3 border-top">
+                    <Row>
+                      <Col xs={12} md={4}>
+                        <strong>SUBTOTAL</strong>
+                      </Col>
+                      <Col xs={12} md={8}>
+                        <span className="d-block text-right">
+                          <strong>${cartData.subTotal} </strong>
+                        </span>
 
-                  <Row className="d-flex justify-content-center">
+                        <span className="d-block  text-right">
+                          or {cartData.maxInstallment} X $
+                          {Math.round(
+                            (cartData.subTotal / cartData.maxInstallment) * 100
+                          ) / 100}
+                        </span>
+                      </Col>
+                    </Row>
+                  </div>
+
+                  <Row className="d-flex justify-content-center col-md-12 mt-4 mb-3">
                     <Button variant="dark">Checkout</Button>
                   </Row>
                 </Fragment>
