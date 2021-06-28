@@ -28,16 +28,18 @@ function CartCard(props) {
         <span>Quantity : {product.quantity}</span>
       </Col>
       <Col xs={12} md={3}>
-        <div className="dark-text">
+        <div className="dark-text d-flex">
           <span className="">${product.price}</span>
           <ButtonGroup
-            className=""
+            className="m-auto"
             aria-label="Second group"
             size="sm"
             as="span"
           >
             <Button
               variant="outline-danger"
+              className="close-cart"
+              title="Remove item"
               onClick={() => updateCart({ id: product.id, type: "remove" })}
             >
               {" "}
